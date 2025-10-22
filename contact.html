@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Directory</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .employee-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .employee-card {
+            background-color: #fafafa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #4CAF50;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .employee-card:hover {
+            transform: translateY(-5px);
+            background-color: #f9fff9;
+        }
+
+        .employee-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .employee-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Employee Directory</h1>
+        <input type="text" id="searchInput" placeholder="Search by name, department, or role..." />
+        <div id="employeeList" class="employee-list"></div>
+    </div>
+
+    <footer>
+        <p>© 2025 Employee Directory | Created for Front-End Project</p>
+    </footer>
+
+    <script>
+        // Sample employee data
+        const employees = [
+            { name: "Alice Johnson", department: "HR", role: "Manager", email: "alice@example.com", contact: "9876543210" },
+            { name: "Bob Smith", department: "IT", role: "Developer", email: "bob@example.com", contact: "9123456780" },
+            { name: "Carol Lee", department: "Finance", role: "Accountant", email: "carol@example.com", contact: "9988776655" },
+            { name: "David Kim", department: "IT", role: "UI Designer", email: "david@example.com", contact: "9090909090" },
+            { name: "Emma Brown", department: "Marketing", role: "Executive", email: "emma@example.com", contact: "8787878787" },
+            { name: "Frank Miller", department: "Sales", role: "Sales Lead", email: "frank@example.com", contact: "8080808080" }
+        ];
+
+        const searchInput = document.getElementById("searchInput");
+        const employeeList = document.getElementById("employeeList");
+
+        // Function to display employees
+        function displayEmployees(list) {
+            employeeList.innerHTML = "";
+            if (list.length === 0) {
+                employeeList.innerHTML = "<p>No employees found.</p>";
+                return;
+            }
+
+            list.forEach((emp) => {
+                const card = document.createElement("div");
+                card.className = "employee-card";
+                card.innerHTML = `
+          <h3>${emp.name}</h3>
+          <p><strong>Department:</strong> ${emp.department}</p>
+          <p><strong>Role:</strong> ${emp.role}</p>
+          <p><strong>Email:</strong> ${emp.email}</p>
+          <p><strong>Contact:</strong> ${emp.contact}</p>
+        `;
+                employeeList.appendChild(card);
+            });
+        }
+
+        // Initial display
+        displayEmployees(employees);
+
+        // Search functionality
+        searchInput.addEventListener("input", () => {
+            const query = searchInput.value.toLowerCase();
+            const filtered = employees.filter(
+                (emp) =>
+                    emp.name.toLowerCase().includes(query) ||
+                    emp.department.toLowerCase().includes(query) ||
+                    emp.role.toLowerCase().includes(query)
+            );
+            displayEmployees(filtered);
+        });
+    </script>
+</body>
+
+</html>
