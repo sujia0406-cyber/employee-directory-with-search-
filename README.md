@@ -15,7 +15,7 @@ Technical Requirements
 3. Database: JSON files or a database management system like MongoDB
 
 Getting Started
-1. Clone the repository: git clone https://github.com/your-repo/employee-directory.git
+1. Clone the repository: git clone https://github.com/sujia0406-cyber/employee-directory-with-search-.git
 2. Install dependencies: npm install
 3. Start the application: npm start
 
